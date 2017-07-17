@@ -623,7 +623,7 @@ describe('Controllers', function () {
         if (err) return done(err);
         expect(response.statusCode).to.be(422);
         expect(body).to.be.a('string');
-        expect(body).to.be('Unprocessable Entity: The request entity could not be processed (422).\n');
+        expect(body).to.contain('Unprocessable Entity: The request entity could not be processed (422)');
         done();
       });
     });

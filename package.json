@@ -3,7 +3,7 @@
   "author": {
     "name": "William Riley-Land",
     "email": "william@kun.io",
-    "url": "http://kun.io/wprl"
+    "url": "http://kun.io"
   },
   "homepage": "https://github.com/wprl/baucis",
   "version": "1.6.5",
@@ -108,6 +108,10 @@
     {
       "name": "andyzickler",
       "url": "https://github.com/andyzickler"
+    },
+    {
+      "name": "nathanredblur",
+      "url": "https://github.com/nathanredblur"
     }
   ]
 }
