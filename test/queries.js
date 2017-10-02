@@ -199,6 +199,21 @@ describe('Queries', function () {
     });
   });
 
+  it('allows query by Id', function (done) {
+    var id = vegetables[0]._id;
+    var options = {
+      url: 'http://localhost:8012/api/vegetables/' + id,
+      json: true
+    };
+    request.get(options, function (error, response, body) {
+      if (error) return done(error);
+      expect(response.statusCode).to.be(200);
+      expect(body).to.have.property('name', 'Turnip');
+      done();
+    });
+  });
+
+
   it('allows default express query string format', function(done) {
     var options = {
       url: 'http://localhost:8012/api/vegetables?conditions[name]=Radicchio',
@@ -820,7 +835,7 @@ describe('Queries', function () {
     });
   });
 
-  it('should give a 400 if the query stirng is unpar using query operators with _id', function (done) {
+  it('should give a 400 if the query string is unpar using query operators with _id', function (done) {
     var options = {
       url: 'http://localhost:8012/api/vegetables?conditions={ \'_id\': { \'$gt\': \'111111111111111111111111\' } }',
       json: true
@@ -828,7 +843,11 @@ describe('Queries', function () {
     request.get(options, function (error, response, body) {
       if (error) return done(error);
       expect(response.statusCode).to.be(400);
-      expect(body).to.have.property('message', 'The conditions query string value was not valid JSON: "Unexpected token \'" (400).');
+      // before:  'The conditions query string value was not valid JSON: "Unexpected token \'" (400).'
+      // after:   'The conditions query string value was not valid JSON: "Unexpected token \' in JSON at position 2" (400).'
+      // test changed to be less fragile
+      expect(body).to.have.property('message');
+      expect(body.message).to.contain('The conditions query string value was not valid JSON: "Unexpected token \'');
       done();
     });
   });
