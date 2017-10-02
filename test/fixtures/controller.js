@@ -46,6 +46,7 @@ mongoose.model('bal', Stores, 'stores').plural('baloo');
 
 var fixture = module.exports = {
   init: function (done) {
+    mongoose.Promise = global.Promise;
     mongoose.connect(config.mongo.url, { useMongoClient: true });
 
     // Stores controller
