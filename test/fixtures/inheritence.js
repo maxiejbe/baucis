@@ -26,7 +26,7 @@ var Cordial = Liqueur.discriminator('cordial', CordialSchema);
 
 var fixture = module.exports = {
   init: function (done) {
-    mongoose.connect(config.mongo.url);
+    mongoose.connect(config.mongo.url, { useMongoClient: true });
 
     baucis.rest(Liqueur);
     baucis.rest(Amaro);

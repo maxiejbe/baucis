@@ -17,7 +17,7 @@ mongoose.model('pumpkin', Pumpkin).locking(true);
 var fixture = module.exports = {
   init: function (done) {
 
-    mongoose.connect(config.mongo.url);
+    mongoose.connect(config.mongo.url, { useMongoClient: true });
 
     app = express();
 
