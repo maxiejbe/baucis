@@ -65,7 +65,8 @@ describe('Versioning', function () {
     request.get(options, function (err, response, body) {
       if (err) return done(err);
       expect(response.statusCode).to.be(400);
-      expect(body).to.be('Bad Request: The requested API version range &quot;&gt;3.0.1&quot; could not be satisfied (400).\n');
+      // now is HTML / before was plain/text
+      expect(body).to.contain('Bad Request: The requested API version range &quot;&gt;3.0.1&quot; could not be satisfied (400).');
       expect(response.headers).not.to.have.property('api-version');
       done();
     });
