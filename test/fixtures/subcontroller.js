@@ -25,8 +25,7 @@ mongoose.model('task', Task);
 var fixture = module.exports = {
   init: function (done) {
 
-    mongoose.connect(config.mongo.url);
-
+    connect
     var users = baucis.rest('user');
     var tasks = users.vivify('tasks');
 
