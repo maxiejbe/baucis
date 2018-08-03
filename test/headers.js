@@ -50,12 +50,11 @@ describe('Headers', function () {
       if (error) return done(error);
       expect(response.statusCode).to.be(200);
       expect(response.headers).to.have.property('last-modified', httpDate);
-
       request.get(options, function (error, response, body) {
         if (error) return done(error);
         expect(response.statusCode).to.be(200);
         expect(response.headers.trailer).to.be('Last-Modified, Etag');
-        expect(response.headers['content-type']).to.be('application/json');
+        expect(response.headers['content-type']).to.be('application/json; charset=utf-8');
         expect(response.headers['transfer-encoding']).to.be('chunked');
         expect(response.trailers).to.have.property('last-modified', httpDate);
         done();
@@ -95,7 +94,7 @@ describe('Headers', function () {
       if (error) return done(error);
         expect(response.statusCode).to.be(200);
         expect(response.headers.trailer).to.be('Last-Modified, Etag');
-        expect(response.headers['content-type']).to.be('application/json');
+        expect(response.headers['content-type']).to.be('application/json; charset=utf-8');
         expect(response.headers['transfer-encoding']).to.be('chunked');
         expect(response.trailers.etag).to.be(etag);
         done();
@@ -126,7 +125,7 @@ describe('Headers', function () {
       if (error) return done(error);
       expect(response.statusCode).to.be(406);
       expect(response.headers).to.have.property('content-type', 'text/html; charset=utf-8');
-      expect(body).to.be('Not Acceptable: The requested content type could not be provided (406).\n');
+      expect(body).to.contain('Not Acceptable: The requested content type could not be provided (406).');
       done();
     });
   });
