@@ -33,6 +33,11 @@ var decorator = module.exports = function (options, protect) {
       next(RestError.BadRequest(message));
       return;
     }
+    // Bad Mongo query hint (5.x).
+    if (error.message.match('planner returned error :: caused by :: hint provided does not correspond to an existing index')) {
+      next(RestError.BadRequest(message));
+      return;
+    }
     if (!error.$err) return next(error);
     // Mongoose 3
     if (error.$err.match('planner returned error: bad hint')) {
