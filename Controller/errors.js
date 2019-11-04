@@ -34,7 +34,6 @@ var decorator = module.exports = function (options, protect) {
       return;
     }
     // Bad Mongo query hint (5.x).
-    console.log(error.message);
     if (error.message.match('planner returned error :: caused by :: hint provided does not correspond to an existing index')) {
       next(RestError.BadRequest(message));
       return;
@@ -57,10 +56,10 @@ var decorator = module.exports = function (options, protect) {
     }
 
     var body = {};
-    var scrape = /[$](.+)[_]\d+\s+dup key: [{] : "([^"]+)" [}]/;
+    var scrape = /(.*?[:]){2} (.*)[_](.*?["])(.*)(.*?["])/;
     var scraped = scrape.exec(error.message);
-    var path = scraped ? scraped[1] : '???';
-    var value = scraped ? scraped[2] : '???';
+    var path = scraped ? scraped[2] : '???';
+    var value = scraped ? scraped[4] : '???';
     body[path] = {
       message: util.format('Path `%s` (%s) must be unique.', path, value),
       originalMessage: error.message,
