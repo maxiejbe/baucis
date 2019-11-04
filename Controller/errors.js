@@ -34,7 +34,8 @@ var decorator = module.exports = function (options, protect) {
       return;
     }
     // Bad Mongo query hint (5.x).
-    if (error.message.match('planner returned error :: caused by :: hint provided does not correspond to an existing index')) {
+    console.log(error.message);
+    if (error.message.match('planner returned error :: caused by :: hint provided does not correspond to an existing index')) {
       next(RestError.BadRequest(message));
       return;
     }
