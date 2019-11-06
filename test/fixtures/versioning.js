@@ -37,8 +37,9 @@ var fixture = module.exports = {
     done();
   },
   deinit: function (done) {
-    server.close();
-    //mongoose.disconnect();
-    done();
+    mongoose.disconnect(function(){
+      server.close();
+      done();
+    });
   }
 };

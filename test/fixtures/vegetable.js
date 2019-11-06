@@ -175,9 +175,10 @@ var fixture = module.exports = {
     done();
   },
   deinit: function (done) {
-    server.close();
-    //mongoose.disconnect();
-    done();
+    mongoose.disconnect(function(){
+      server.close();
+      done();
+    });
   },
   create: function (done) {
     var Vegetable = mongoose.model('vegetable');
