@@ -57,7 +57,7 @@ mongoose.model('animal', Animal);
 // __Module Definition__
 var fixture = module.exports = {
   init: function (done) {
-    mongoose.connect(config.mongo.url, { useMongoClient: true });
+    mongoose.connect(config.mongo.url, {  });
 
     fixture.saveCount = 0;
     fixture.removeCount = 0;
@@ -176,7 +176,7 @@ var fixture = module.exports = {
   },
   deinit: function (done) {
     server.close();
-    mongoose.disconnect();
+    //mongoose.disconnect();
     done();
   },
   create: function (done) {
