@@ -57,7 +57,7 @@ mongoose.model('animal', Animal);
 // __Module Definition__
 var fixture = module.exports = {
   init: function (done) {
-    mongoose.connect(config.mongo.url, {  });
+    mongoose.connect(config.mongo.url, {});
 
     fixture.saveCount = 0;
     fixture.removeCount = 0;
