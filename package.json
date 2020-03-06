@@ -45,6 +45,7 @@
     "baucis-links": "^1.0.0",
     "deco": "^0.12.0",
     "event-stream": "^3.3.0",
+    "pluralize": "^7.0.0",
     "rest-error": "^1.2.0",
     "semver": "^4.3.4"
   },

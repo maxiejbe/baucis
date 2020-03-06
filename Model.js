@@ -1,6 +1,6 @@
 var deco = require('deco');
 var mongoose = require('mongoose');
-var pluralize = require('mongoose/lib/utils').toCollectionName;
+var pluralize = require('pluralize');
 
 var Model = module.exports = deco(function (options, protect) {
   var model = this;
