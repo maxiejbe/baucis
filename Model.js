@@ -21,7 +21,7 @@ var Model = module.exports = deco(function (options, protect) {
     else return (deselected.indexOf(path) !== -1);
   };
 
-  model.singular(model.modelName);
+  model.singular(model.modelName.toLowerCase());
   model.plural(pluralize(model.singular()));
 });
 
