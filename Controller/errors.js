@@ -133,6 +133,7 @@ var decorator = module.exports = function (options, protect) {
         Object.getOwnPropertyNames(error3).forEach(function(key) {
           o[key] = error3[key];
         });
+        o.name = o.name || 'ValidatorError';
         delete o.domain;
         delete o.domainEmitter;
         delete o.domainThrown;
