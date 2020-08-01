@@ -49,7 +49,7 @@ Vegetable.pre('remove', function (next) {
   next();
 });
 
-mongoose.model('vegetable', Vegetable).lastModified('lastModified');
+mongoose.model('Vegetable', Vegetable).lastModified('lastModified');
 mongoose.model('fungus', Fungus).plural('fungi');
 mongoose.model('mineral', Mineral);
 mongoose.model('animal', Animal);
@@ -70,7 +70,7 @@ var fixture = module.exports = {
     baucis.rest('animal').fragment('no-content').emptyCollection(204);
     baucis.rest('animal').fragment('not-found').emptyCollection(404);
 
-    var veggies = baucis.rest('vegetable');
+    var veggies = baucis.rest('Vegetable');
     veggies.relations(false).hints(true).comments(true);
 
     veggies.request(function (request, response, next) {
@@ -181,7 +181,7 @@ var fixture = module.exports = {
     });
   },
   create: function (done) {
-    var Vegetable = mongoose.model('vegetable');
+    var Vegetable = mongoose.model('Vegetable');
     var Mineral = mongoose.model('mineral');
     var Fungus = mongoose.model('fungus');
     var mineralColors = [ 'Blue', 'Green', 'Pearlescent', 'Red', 'Orange', 'Yellow', 'Indigo', 'Violet' ];

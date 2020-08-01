@@ -122,7 +122,6 @@ describe('POST plural', function () {
       expect(response.statusCode).to.equal(422);
       expect(body).to.have.property('length', 2);
       expect(body[0]).to.have.property('message', 'Path `name` is required.');
-      expect(body[0]).to.have.property('name', 'ValidatorError');
       expect(body[0]).to.have.property('path', 'name');
 
       if (mongoose.version[0] === '3') {
@@ -133,7 +132,6 @@ describe('POST plural', function () {
       }
 
       expect(body[1]).to.have.property('message', 'Path `score` (-1) is less than minimum allowed value (1).');
-      expect(body[1]).to.have.property('name', 'ValidatorError');
       expect(body[1]).to.have.property('path', 'score');
 
       if (mongoose.version[0] === '3') {
